@@ -3,7 +3,7 @@
 版: 1.1
 作成日: 2026-09-14
 前提資料: [discord-activity-research.md](discord-activity-research.md)、[verification-results.md](verification-results.md)
-UIベース: Steam Idle Picker v2.1.1（`D:\Claude\30_STEAM_IDLE_PICKER`）
+UIベース: [Steam Idle Picker](https://github.com/4sou9/Steam_Idle_Picker) v2.1.1
 
 ### 改訂履歴
 
