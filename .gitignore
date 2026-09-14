@@ -1,0 +1,28 @@
+# Claude Code
+.claude/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+*.log
+
+# Tauri / Rust
+/target/
+src-tauri/target/
+src-tauri/gen/
+src-tauri/engine/
+verify/dummy/target/
+
+# Node / Vite
+node_modules/
+/dist/
+*.tsbuildinfo
+
+# 検証用の大きなデータ
+verify/detectable.json
+# 検証時のスクリーンショット（手元の Steam ライブラリや Discord の画面が写っている）と一時ファイル
+verify/shots/
+verify/v12_logsnap.json
+verify/__pycache__/

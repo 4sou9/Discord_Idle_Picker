@@ -1,0 +1,13 @@
+14:31:04 detected=True after=5.0s
+14:31:05 登録情報を削除（ダミーは起動したまま）
+14:36:05    log: [2026-09-14 14:36:03.908] [warn]  [RunningGameHeartbeatManager] Failed to get performance snapshot for game 1402416831914053733 Performance snapshot not available
+14:41:05    log: [2026-09-14 14:41:03.912] [warn]  [RunningGameHeartbeatManager] Failed to get performance snapshot for game 1402416831914053733 Performance snapshot not available
+14:42:05 削除後11分: heartbeat(1402416831914053733)=2 visible-null=0
+14:42:05 登録情報を作り直し
+14:42:35 作り直し後30秒: 変化=0件
+14:42:35 再度削除
+14:42:43    stop log: [2026-09-14 14:42:36.026] [info]  [RunningGameStore] Running Games Changed [object Object]
+14:42:43    stop log: [2026-09-14 14:42:36.029] [info]  [Clips] decider: handleRunningGamesChange visibleGame=null newPrimaryKey=null currentSessionGameKey=c:/program files (x86)/steam/steamapps/common/discordidlepicker_40
+14:42:43    stop log: [2026-09-14 14:42:36.029] [info]  [Clips] decider: handleRunningGamesChange — visible game became null, finalizing session immediately
+14:42:43    stop log: [2026-09-14 14:42:36.067] [warn]  [RunningGameHeartbeatManager] Failed to get performance snapshot for game 1402416831914053733 Performance snapshot not available
+14:42:43 cleaned: acf=True folder=True

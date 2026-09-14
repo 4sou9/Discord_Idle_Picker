@@ -1,0 +1,560 @@
+@font-face {
+  font-family: "Segoe Fluent Icons";
+  src: local("Segoe Fluent Icons"), local("Segoe MDL2 Assets");
+}
+
+:root {
+  color-scheme: light dark;
+  --radius-control: 4px;
+  --radius-container: 8px;
+  --transition: 120ms ease;
+
+  --bg-window: #202020;
+  --bg-card: #2b2b2b;
+  --bg-card-alt: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --accent: #0067c0;
+  --accent-hover: #1975c5;
+  --idle-green: #6ccb5f;
+  --warn: #fce100;
+  --favorite: #f7c948;
+  --hover: rgba(255, 255, 255, 0.06);
+  --pressed-opacity: 0.7;
+  --disabled-opacity: 0.35;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-window: #f3f3f3;
+    --bg-card: #ffffff;
+    --bg-card-alt: rgba(0, 0, 0, 0.03);
+    --border: rgba(0, 0, 0, 0.08);
+    --text-primary: #1a1a1a;
+    --text-secondary: rgba(0, 0, 0, 0.55);
+    --idle-green: #2e8b2e;
+    --warn: #9d5d00;
+    --favorite: #c98a00;
+    --hover: rgba(0, 0, 0, 0.05);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Segoe UI Variable Text", "Segoe UI", "Yu Gothic UI", sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-window);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px 12px 12px;
+  gap: 6px;
+}
+
+/* ── Titlebar ────────────────────────────────────────────────────────── */
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin: -8px -12px 0;
+  padding-left: 12px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.titlebar-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.titlebar-controls {
+  display: flex;
+  height: 100%;
+  margin-left: 6px;
+}
+
+.titlebar-button {
+  width: 44px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe Fluent Icons";
+  font-size: 10px;
+  color: var(--text-secondary);
+  transition: background var(--transition), color var(--transition);
+}
+
+.titlebar-button:hover {
+  background: var(--hover);
+  color: var(--text-primary);
+}
+
+.titlebar-button.close:hover {
+  background: #c42b1c;
+  color: white;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────────────── */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0;
+}
+
+.icon-button.primary {
+  color: var(--accent);
+}
+
+.icon-button.primary:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+.icon-button.primary.stop {
+  color: #c42b1c;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  height: 34px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  transition: border-color var(--transition);
+}
+
+.search-box:focus-within {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: -1px;
+}
+
+.search-box .icon {
+  font-family: "Segoe Fluent Icons";
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
+  height: 100%;
+}
+
+.search-box input::placeholder {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.search-clear {
+  width: 24px;
+  height: 24px;
+  margin-right: -4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: "Segoe Fluent Icons";
+  font-size: 10px;
+  color: var(--text-secondary);
+  border-radius: var(--radius-control);
+  transition: background var(--transition), color var(--transition);
+}
+
+.search-clear:hover {
+  background: var(--hover);
+  color: var(--text-primary);
+}
+
+.search-clear:active {
+  opacity: var(--pressed-opacity);
+}
+
+.filter-select {
+  height: 34px;
+  min-width: 104px;
+  padding: 0 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  border-bottom: 2px solid var(--accent);
+}
+
+.filter-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.icon-button {
+  width: 36px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe Fluent Icons";
+  font-size: 16px;
+  background: var(--bg-window);
+  border: none;
+  border-radius: var(--radius-control);
+  transition: background var(--transition);
+}
+
+.icon-button:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+.icon-button:active:not(:disabled) {
+  opacity: var(--pressed-opacity);
+}
+
+.icon-button:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: default;
+}
+
+.icon-button.spinning {
+  animation: spin 1s linear infinite;
+}
+
+.icon-button.small {
+  font-size: 14px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── List panel ──────────────────────────────────────────────────────── */
+
+.list-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 2px;
+}
+
+.sort-header {
+  display: grid;
+  grid-template-columns: 28px 24px 1fr 56px 64px;
+  align-items: center;
+  /* Match the rows: row-slot inset (2px) + row padding (6px), plus the list's
+     scrollbar gutter (6px) on the right, so the columns line up. */
+  padding: 3px 14px 3px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-container) var(--radius-container) 0 0;
+}
+
+.sort-header button {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 3px 7px;
+  border-radius: 3px;
+  transition: background var(--transition), color var(--transition);
+}
+
+.sort-header button:hover {
+  background: var(--hover);
+  color: var(--text-primary);
+}
+
+.sort-name {
+  grid-column: 3;
+  justify-self: start;
+}
+
+.sort-method {
+  grid-column: 4;
+  justify-self: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.sort-id {
+  grid-column: 5;
+  justify-self: end;
+}
+
+.game-list {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  /* Keep the gutter even when the list is short, so header alignment never shifts. */
+  scrollbar-gutter: stable;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius-container) var(--radius-container);
+}
+
+.game-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.game-list::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  opacity: 0.4;
+  border-radius: 3px;
+}
+
+.game-list::-webkit-scrollbar-thumb:hover {
+  opacity: 0.7;
+}
+
+.status-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ── Rows ────────────────────────────────────────────────────────────── */
+
+.game-list-inner {
+  position: relative;
+  width: 100%;
+}
+
+.row-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1px 2px;
+}
+
+.game-row {
+  display: grid;
+  grid-template-columns: 28px 24px 1fr 56px 64px;
+  align-items: center;
+  height: 100%;
+  padding: 0 6px;
+  border-radius: 4px;
+  transition: background var(--transition);
+}
+
+.game-row:hover {
+  background: var(--hover);
+}
+
+.game-row.selected {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe Fluent Icons";
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.checkbox.checked {
+  color: var(--accent);
+}
+
+.checkbox:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: default;
+}
+
+.fav-button {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe Fluent Icons";
+  font-size: 14px;
+  color: var(--text-secondary);
+  visibility: hidden;
+}
+
+.game-row:hover .fav-button,
+.fav-button.on {
+  visibility: visible;
+}
+
+.fav-button:hover,
+.fav-button.on {
+  color: var(--favorite);
+}
+
+.game-row.disabled .name-text {
+  color: var(--text-secondary);
+}
+
+.detection-icon {
+  font-family: "Segoe Fluent Icons";
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-left: -2px;
+}
+
+.detection-icon.detected {
+  color: var(--idle-green);
+}
+
+.detection-icon.not-detected {
+  color: var(--warn);
+}
+
+.method-badge {
+  justify-self: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
+
+.method-badge.steam {
+  color: var(--accent-hover);
+}
+
+.game-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.idling-icon {
+  font-family: "Segoe Fluent Icons";
+  font-size: 10px;
+  color: var(--idle-green);
+  flex-shrink: 0;
+}
+
+.name-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-id {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: right;
+  padding: 0 7px; /* same inset as the sort button text */
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 2px 2px 0;
+}
+
+.footer-status {
+  flex-shrink: 0;
+}
+
+.footer-info {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.footer-info.warn {
+  color: var(--warn);
+}
+
+.footer strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── Context menu ────────────────────────────────────────────────────── */
+
+.context-menu {
+  position: fixed;
+  z-index: 100;
+  min-width: 180px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-container);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.context-menu-item {
+  text-align: left;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: var(--radius-control);
+  white-space: nowrap;
+  transition: background var(--transition);
+}
+
+.context-menu-item:hover {
+  background: var(--hover);
+}
