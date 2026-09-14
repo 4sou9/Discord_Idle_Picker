@@ -2,6 +2,8 @@
 
 A Windows desktop app that makes Discord show selected games as "Playing" without running the games. It starts lightweight dummy processes that satisfy Discord's game detection. The UI and workflow follow [Steam Idle Picker](../30_STEAM_IDLE_PICKER).
 
+![Screenshot](01.png)
+
 ## Requirements
 
 - Windows 10/11 (x64)
